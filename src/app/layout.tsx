@@ -43,7 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='uk'>
-      <body className={`${sansation.variable} ${raleway.variable} ${manrope.variable}`}>{children}</body>
+      <body className={`${sansation.variable} ${raleway.variable} ${manrope.variable}`}>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
