@@ -8,6 +8,7 @@ const sansation = Sansation({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sansation',
+  fallback: ['system-ui', '-apple-system', 'Arial', 'sans-serif'],
 });
 
 const raleway = Raleway({
@@ -15,6 +16,7 @@ const raleway = Raleway({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
   variable: '--font-raleway',
+  fallback: ['system-ui', '-apple-system', 'Arial', 'sans-serif'],
 });
 
 const manrope = Manrope({
@@ -22,11 +24,16 @@ const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
   variable: '--font-manrope',
+  fallback: ['system-ui', '-apple-system', 'Arial', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
   title: 'Aleko Sokurashvili',
   description: 'Дізнайтеся ключ до створення вірусного контенту: поради, стратегії та приклади для вашого бренду.',
+  other: {
+    'color-scheme': 'only light',
+    'next-size-adjust': 'auto',
+  },
 };
 
 export default function RootLayout({
@@ -36,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='uk'>
-      <body className={`${sansation.variable} ${raleway.variable} ${manrope.variable} antialiased`}>{children}</body>
+      <body className={`${sansation.variable} ${raleway.variable} ${manrope.variable}`}>{children}</body>
     </html>
   );
 }
