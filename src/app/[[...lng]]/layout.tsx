@@ -1,4 +1,8 @@
+import { dir } from 'i18next';
 import { Manrope, Raleway, Sansation } from 'next/font/google';
+
+import { fallbackLng, languages } from '@/app/i18n/settings';
+import { Header } from '@/sections';
 
 import type { Metadata } from 'next';
 import './globals.css';
@@ -27,6 +31,13 @@ const manrope = Manrope({
   fallback: ['system-ui', '-apple-system', 'Arial', 'sans-serif'],
 });
 
+export async function generateStaticParams() {
+  return [
+    { lng: [] }, // для дефолтної мови (без префіксу в URL)
+    ...languages.filter(lng => lng !== fallbackLng).map(lng => ({ lng: [lng] })), // інші мови як масив
+  ];
+}
+
 export const metadata: Metadata = {
   title: 'Aleko Sokurashvili',
   description: 'Дізнайтеся ключ до створення вірусного контенту: поради, стратегії та приклади для вашого бренду.',
@@ -36,14 +47,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{
+    lng: string[];
+  }>;
 }>) {
+  const { lng: lngArray } = await params;
+  const lng = lngArray?.[0] || fallbackLng;
+
   return (
-    <html lang='uk'>
+    <html lang={lng} dir={dir(lng)}>
       <body className={`${sansation.variable} ${raleway.variable} ${manrope.variable}`}>
+        <Header />
         <main>{children}</main>
       </body>
     </html>

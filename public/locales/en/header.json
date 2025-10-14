@@ -1,0 +1,12 @@
+{
+	"navbar": {
+		"structure": "Structure",
+		"about": "About me",
+		"plus": "Pluses",
+		"reviews": "Reviews",
+		"faq": "FAQ"
+	},
+	"button": {
+		"buy": "Buy with discount"
+	}
+}
