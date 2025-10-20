@@ -32,10 +32,7 @@ const manrope = Manrope({
 });
 
 export async function generateStaticParams() {
-  return [
-    { lng: [] }, // для дефолтної мови (без префіксу в URL)
-    ...languages.filter(lng => lng !== fallbackLng).map(lng => ({ lng: [lng] })), // інші мови як масив
-  ];
+  return [{ lng: [] }, ...languages.filter(lng => lng !== fallbackLng).map(lng => ({ lng: [lng] }))];
 }
 
 export const metadata: Metadata = {
@@ -53,7 +50,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{
-    lng: string[];
+    lng?: string[];
   }>;
 }>) {
   const { lng: lngArray } = await params;
